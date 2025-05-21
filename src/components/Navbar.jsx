@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, ShoppingBag, User, ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const [megaMenuPos, setMegaMenuPos] = useState({ left: 0, top: 0, width: 0 });
+  const triggerRef = useRef(null);
+  const megaMenuRef = useRef(null);
+  const pathName = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,14 +22,63 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const calculateMegaMenuPos = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setMegaMenuPos({
+        left: rect.left,
+        top: rect.bottom,
+        width: rect.width,
+      });
+    }
+  };
+
+  const handleToggleMegaMenu = () => {
+    if (!showMegaMenu) {
+      calculateMegaMenuPos();
+    }
+    setShowMegaMenu((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (!showMegaMenu) return;
+
+    const handleClickOutside = (event) => {
+      if (
+        megaMenuRef.current &&
+        !megaMenuRef.current.contains(event.target) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(event.target)
+      ) {
+        setShowMegaMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showMegaMenu]);
+
+  const navLinks = [
+    { title: "Home", href: "/" },
+    { title: "Products", href: "/products" },
+    { title: "Blog", href: "/blog" },
+    { title: "Pages", href: "/pages" },
+    { title: "Offers", href: "/offers" },
+    { title: "Contact", href: "/contact" },
+  ];
+
+  const activeColor = "text-[#3BB77E]";
+  const hoverColor = "hover:text-[#3BB77E]";
+
   return (
     <motion.div
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`w-full z-50 text-sm text-gray-600 ${
+      className={`w-full z-50 text-sm text-gray-600 relative ${
         isSticky ? "fixed top-0 shadow-md bg-white" : "bg-[#F3F3F3]"
       }`}
+      style={{ overflow: "visible" }}
     >
       <div className="w-full px-4 md:px-10 py-4 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
         <div className="flex items-center gap-4 w-full justify-between md:w-auto md:justify-start">
@@ -55,13 +109,19 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-5">
-          <a href="/login" className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition">
+          <a
+            href="/login"
+            className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition"
+          >
             <User className="w-5 h-5" />
-            <span className="hidden md:block">Account</span>
+            <span>Account</span>
           </a>
-          <a href="/cart" className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition">
+          <a
+            href="/cart"
+            className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition"
+          >
             <ShoppingBag className="w-5 h-5" />
-            <span className="hidden md:block">Cart</span>
+            <span>Cart</span>
           </a>
         </div>
       </div>
@@ -72,61 +132,104 @@ const Navbar = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="bg-white shadow-sm"
       >
-        <div className="w-full px-4 md:px-10 py-3 flex flex-wrap items-center justify-start gap-6 overflow-x-auto whitespace-nowrap text-sm font-medium">
-          <Link href="/" className="hover:text-[#3BB77E] transition">
-            Home
-          </Link>
+        <div className="w-full px-4 md:px-10 py-3 flex flex-wrap items-center justify-start gap-6 overflow-x-auto whitespace-nowrap text-sm font-medium relative">
+          {navLinks.map(({ title, href }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`relative pb-1 transition-colors duration-300 group ${
+                pathName === href ? activeColor : hoverColor
+              }`}
+            >
+              {title}
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-[#3BB77E] transition-[width] duration-300 ${
+                  pathName === href ? "w-full" : "w-0"
+                } group-hover:w-full`}
+              />
+            </Link>
+          ))}
+
           <div
-            className="relative"
-            onMouseEnter={() => setShowMegaMenu(true)}
-            onMouseLeave={() => setShowMegaMenu(false)}
+            ref={triggerRef}
+            onClick={handleToggleMegaMenu}
+            className="relative cursor-pointer select-none group"
           >
-            <button className="flex items-center gap-1 hover:text-[#3BB77E] transition">
-              Categories <ChevronDown size={16} />
+            <button
+              className={`flex items-center gap-1 pb-1 transition-colors duration-300 ${
+                showMegaMenu ? activeColor : hoverColor
+              }`}
+            >
+              Baby Collection <ChevronDown size={16} />
             </button>
-            {showMegaMenu && (
-              <div className="absolute top-full left-0 bg-white border shadow-lg rounded-md mt-2 p-4 w-[600px] grid grid-cols-3 gap-6 z-50">
-                <div>
-                  <h4 className="font-semibold mb-2">Fashion</h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    <li><Link href="#">Men</Link></li>
-                    <li><Link href="#">Women</Link></li>
-                    <li><Link href="#">Kids</Link></li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Electronics</h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    <li><Link href="#">Mobiles</Link></li>
-                    <li><Link href="#">Laptops</Link></li>
-                    <li><Link href="#">Accessories</Link></li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Home</h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    <li><Link href="#">Furniture</Link></li>
-                    <li><Link href="#">Kitchen</Link></li>
-                    <li><Link href="#">Decor</Link></li>
-                  </ul>
-                </div>
-              </div>
-            )}
+            <span
+              className={`absolute left-0 -bottom-1 h-[2px] bg-[#3BB77E] transition-[width] duration-300 ${
+                showMegaMenu ? "w-full" : "w-0"
+              } group-hover:w-full`}
+            />
           </div>
-          <Link href="/products" className="hover:text-[#3BB77E] transition">
-            Products
-          </Link>
-          <Link href="/blog" className="hover:text-[#3BB77E] transition">
-            Blog
-          </Link>
-          <Link href="/pages" className="hover:text-[#3BB77E] transition">
-            Pages
-          </Link>
-          <Link href="/offers" className="hover:text-[#3BB77E] transition">
-            Offers
-          </Link>
         </div>
       </motion.div>
+
+      {showMegaMenu && (
+        <div
+          ref={megaMenuRef}
+          className="fixed bg-white border shadow-lg rounded-md p-6 z-[10000]"
+          style={{
+            top: megaMenuPos.top + window.scrollY + 8,
+            left: megaMenuPos.left,
+            width: "min(90vw, 600px)", 
+            minWidth: 480, 
+            maxWidth: "calc(100vw - 2rem)",  
+            overflow: "visible",
+          }}
+        >
+          <div className="grid grid-cols-3 gap-6">
+            <div>
+              <h4 className="font-semibold mb-2">Clothing</h4>
+              <ul className="space-y-1 text-sm text-gray-600">
+                <li>
+                  <Link href="#">Newborn (0-6M)</Link>
+                </li>
+                <li>
+                  <Link href="#">Toddlers (1-3Y)</Link>
+                </li>
+                <li>
+                  <Link href="#">Kids (4-7Y)</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-2">Toys</h4>
+              <ul className="space-y-1 text-sm text-gray-600">
+                <li>
+                  <Link href="#">Soft Toys</Link>
+                </li>
+                <li>
+                  <Link href="#">Learning Toys</Link>
+                </li>
+                <li>
+                  <Link href="#">Outdoor Toys</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-2">Essentials</h4>
+              <ul className="space-y-1 text-sm text-gray-600">
+                <li>
+                  <Link href="#">Diapers</Link>
+                </li>
+                <li>
+                  <Link href="#">Baby Bath</Link>
+                </li>
+                <li>
+                  <Link href="#">Feeding Bottles</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
