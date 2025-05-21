@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function shuffleArray(array) {
-  // Fisher-Yates shuffle
   let arr = array.slice();
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -13,37 +13,65 @@ function shuffleArray(array) {
   return arr;
 }
 
+// Countdown utility
+const calculateTimeLeft = (endTime) => {
+  const difference = new Date(endTime) - new Date();
+  if (difference <= 0) return null;
+
+  const minutes = Math.floor((difference / 1000 / 60) % 60);
+  const hours = Math.floor((difference / 1000 / 60 / 60) % 24);
+  const seconds = Math.floor((difference / 1000) % 60);
+
+  return {
+    hours,
+    minutes,
+    seconds,
+  };
+};
+
 const FeaturedProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(8);
   const [error, setError] = useState(null);
-  const intervalRef = useRef(null);
+  const [timers, setTimers] = useState({});
+  const timerIntervalRef = useRef(null);
+  const router = useRouter();
 
-  const fetchProducts = () => {
-    axios
-      .get("/products.json")
-      .then((res) => {
-        const featured = res.data.filter((item) => item.isFeatured === true);
-        const shuffled = shuffleArray(featured);
-        setAllProducts(shuffled);
-        setVisibleCount(8); 
-        setError(null);
-      })
-      .catch(() => {
-        setError("Failed to load products");
-      });
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get("/products.json");
+      const featured = res.data.filter((item) => item.isFeatured === true);
+      const shuffled = shuffleArray(featured);
+      setAllProducts(shuffled);
+      setError(null);
+    } catch (err) {
+      setError("Failed to load products");
+    }
   };
 
   useEffect(() => {
     fetchProducts();
-
-    intervalRef.current = setInterval(() => {
-      fetchProducts();
-    }, 5 * 60 * 1000);  
-    return () => {
-      clearInterval(intervalRef.current);
-    };
   }, []);
+
+  // Start countdown after products are loaded (only once)
+  useEffect(() => {
+    timerIntervalRef.current = setInterval(() => {
+      const updatedTimers = {};
+
+      allProducts.forEach((product) => {
+        if (product.isOffer && product.offerEndTime) {
+          const timeLeft = calculateTimeLeft(product.offerEndTime);
+          if (timeLeft) {
+            updatedTimers[product._id] = timeLeft;
+          }
+        }
+      });
+
+      setTimers(updatedTimers);
+    }, 1000);
+
+    return () => clearInterval(timerIntervalRef.current);
+  }, [allProducts]);
 
   const handleShowMore = () => {
     setVisibleCount((prev) => Math.min(prev + 8, allProducts.length));
@@ -61,57 +89,67 @@ const FeaturedProducts = () => {
         Featured Products
       </h2>
 
-      {error && (
-        <p className="text-center text-red-500 mb-6">{error}</p>
-      )}
+      {error && <p className="text-center text-red-500 mb-6">{error}</p>}
 
-<div className="flex justify-center mx-auto items-center">
-  <div className="inline-grid grid-cols-4 gap-x-6 gap-y-10 w-auto">
-    {visibleProducts.map((product) => (
-      <div
-        key={product.id}
-        className="bg-white rounded-lg shadow-md p-4 w-full"
-      >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-40 object-cover rounded"
-        />
-        <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-        <p className="text-sm text-gray-500">{product.category}</p>
-        <p className="text-gray-800 mt-1 text-sm line-clamp-2">
-          {product.description}
-        </p>
-        <div className="mt-2">
-          {product.offerPrice ? (
-            <div className="flex items-center gap-2">
-              <span className="text-red-500 font-bold">
-                ৳{product.offerPrice}
-              </span>
-              <span className="line-through text-gray-400 text-sm">
-                ৳{product.price}
-              </span>
-            </div>
-          ) : (
-            <span className="text-gray-800 font-bold">৳{product.price}</span>
-          )}
+       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-4">
+          {visibleProducts.map((product) => {
+            const isFlash =
+              product.isOffer === true &&
+              product.offerEndTime &&
+              new Date(product.offerEndTime) > new Date();
+
+            const time = timers[product._id];
+
+            return (
+              <div
+                key={product._id}
+                className="relative bg-white rounded-2xl shadow hover:shadow-lg transition-all p-4"
+              >
+                {isFlash && (
+                  <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs rounded font-semibold z-10">
+                    🔥 Flash Sale
+                  </div>
+                )}
+
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-48 object-cover rounded"
+                />
+
+                <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+                <p className="text-sm text-gray-500">{product.category}</p>
+                <p className="text-gray-800 text-sm line-clamp-2 mt-1">
+                  {product.description}
+                </p>
+
+                <div className="mt-2">
+                  <span className="text-red-500 font-bold text-lg">
+                    ৳{product.offerPrice ?? product.price}
+                  </span>
+                  {product.offerPrice && (
+                    <span className="line-through text-gray-400 ml-2">
+                      ৳{product.price}
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-xs text-gray-500 mt-1">
+                  Quantity: {product.quantity}
+                </p>
+ 
+              </div>
+            );
+          })}
         </div>
-        <p className="text-xs text-gray-500 mt-1">
-          Quantity: {product.quantity}
-        </p>
-      </div>
-    ))}
-  </div>
-</div>
-
-
-      {/* Show More / Show Less button */}
+ 
+      {/* Show More / Show Less buttons */}
       {allProducts.length > 8 && (
         <div className="flex justify-center mt-8">
           {visibleCount < allProducts.length ? (
             <button
               onClick={handleShowMore}
-              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-[#3bb77e] text-white rounded hover:bg-[#24553e] transition"
             >
               Show More
             </button>
