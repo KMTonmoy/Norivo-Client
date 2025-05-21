@@ -3,360 +3,560 @@
     "_id": 1,
     "name": "Cotton Baby Bodysuit",
     "category": "Baby Onesies",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
+      "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
+      "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
+      "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg"
+    ],
     "description": "Soft breathable bodysuit made of organic cotton.",
     "price": 420,
     "offerPrice": 350,
     "quantity": 25,
     "isFeatured": true,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 1.5,
+      "count": 120
+    },
+    "questions": [
+      {
+        "question": "Is this bodysuit machine washable?",
+        "answer": "Yes, it's safe for machine wash with gentle cycle."
+      }
+    ],
+    "suggestedProductIds": [2, 5, 7]
   },
   {
     "_id": 2,
     "name": "Cute Baby Bibs Set",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg"
+    ],
     "description": "Fun printed bibs to keep baby clean and dry.",
     "price": 320,
     "offerPrice": 270,
     "quantity": 30,
     "isFeatured": false,
-    "isOffer": true
+    "isOffer": true,
+    "ratings": {
+      "average": 2.2,
+      "count": 98
+    },
+    "questions": [
+      {
+        "question": "Are the bibs waterproof?",
+        "answer": "Yes, they have a waterproof layer to prevent leaks."
+      }
+    ],
+    "suggestedProductIds": [1, 6, 20]
   },
   {
     "_id": 3,
     "name": "Knitted Baby Sweater",
     "category": "Baby Dresses",
-    "image": "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg"
+    ],
     "description": "Handmade warm sweater for chilly days.",
     "price": 900,
     "offerPrice": 780,
     "quantity": 12,
     "isFeatured": false,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 3.7,
+      "count": 75
+    },
+    "questions": [
+      {
+        "question": "Is it made from wool?",
+        "answer": "Yes, 100% soft wool for comfort."
+      }
+    ],
+    "suggestedProductIds": [9, 22]
   },
   {
     "_id": 4,
     "name": "Baby Beanie Hat",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
+      "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
+      "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
+      "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg"
+    ],
     "description": "Knitted cap to keep little heads warm.",
     "price": 250,
     "offerPrice": 199,
     "quantity": 40,
     "isFeatured": true,
-    "isOffer": true
+    "isOffer": true,
+    "ratings": {
+      "average": 4.3,
+      "count": 88
+    },
+    "questions": [
+      {
+        "question": "Does this hat fit newborns?",
+        "answer": "Yes, it fits newborns up to 6 months."
+      }
+    ],
+    "suggestedProductIds": [6, 20, 11]
   },
   {
     "_id": 5,
     "name": "Patterned Romper",
     "category": "Baby Onesies",
-    "image": "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg",
+      "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg",
+      "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg",
+      "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg"
+    ],
     "description": "One-piece with snap closure for easy diaper change.",
     "price": 480,
     "offerPrice": 430,
     "quantity": 18,
     "isFeatured": true,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 5,
+      "count": 95
+    },
+    "questions": [
+      {
+        "question": "Is the fabric soft?",
+        "answer": "Yes, made from soft breathable cotton."
+      }
+    ],
+    "suggestedProductIds": [1, 10, 27]
   },
   {
     "_id": 6,
     "name": "Soft Baby Socks (5-Pack)",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg"
+    ],
     "description": "Keep baby’s toes warm and snug.",
     "price": 300,
     "offerPrice": 250,
     "quantity": 50,
     "isFeatured": false,
-    "isOffer": true
+    "isOffer": true,
+    "ratings": {
+      "average": 4.4,
+      "count": 130
+    },
+    "questions": [
+      {
+        "question": "Are these socks stretchy?",
+        "answer": "Yes, they stretch comfortably for growing feet."
+      }
+    ],
+    "suggestedProductIds": [2, 20, 21]
   },
   {
     "_id": 7,
     "name": "Swaddle Blanket",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg"
+    ],
     "description": "Soft and breathable muslin swaddle blanket.",
     "price": 600,
     "offerPrice": 500,
     "quantity": 15,
     "isFeatured": true,
-    "isOffer": true
+    "isOffer": true,
+    "ratings": {
+      "average": 4.8,
+      "count": 140
+    },
+    "questions": [
+      {
+        "question": "Is the material hypoallergenic?",
+        "answer": "Yes, perfect for sensitive baby skin."
+      }
+    ],
+    "suggestedProductIds": [1, 26, 9]
   },
   {
     "_id": 8,
     "name": "Baby Sunglasses",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg",
+      "https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg"
+    ],
     "description": "Protect baby eyes with 100% UV shield.",
     "price": 450,
     "offerPrice": 399,
     "quantity": 20,
     "isFeatured": false,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 4.1,
+      "count": 60
+    },
+    "questions": [
+      {
+        "question": "Do they fit all baby head sizes?",
+        "answer": "They come with adjustable straps for perfect fit."
+      }
+    ],
+    "suggestedProductIds": [6, 20]
   },
   {
     "_id": 9,
     "name": "Tutu Dress",
     "category": "Baby Dresses",
-    "image": "https://images.pexels.com/photos/3771641/pexels-photo-3771641.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/3771641/pexels-photo-3771641.jpeg",
+      "https://images.pexels.com/photos/3771641/pexels-photo-3771641.jpeg",
+      "https://images.pexels.com/photos/3771641/pexels-photo-3771641.jpeg",
+      "https://images.pexels.com/photos/3771641/pexels-photo-3771641.jpeg"
+    ],
     "description": "Perfect for birthday or photo shoots.",
     "price": 750,
     "offerPrice": 600,
     "quantity": 10,
     "isFeatured": true,
-    "isOffer": true
+    "isOffer": true,
+    "ratings": {
+      "average": 4.7,
+      "count": 85
+    },
+    "questions": [
+      {
+        "question": "Is the dress machine washable?",
+        "answer": "Hand wash recommended to keep tulle soft."
+      }
+    ],
+    "suggestedProductIds": [3, 7, 26]
   },
   {
     "_id": 10,
     "name": "Velcro Sneakers",
     "category": "Baby Shoes",
-    "image": "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg",
+    "images": [
+      "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg",
+      "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg",
+      "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg",
+      "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg"
+    ],
     "description": "Easy-to-wear comfy sneakers for toddlers.",
     "price": 700,
-    "offerPrice": 600,
-    "quantity": 16,
-    "isFeatured": true,
-    "isOffer": false
+    "offerPrice": 650,
+    "quantity": 22,
+    "isFeatured": false,
+    "isOffer": false,
+    "ratings": {
+      "average": 4.3,
+      "count": 100
+    },
+    "questions": [
+      {
+        "question": "Are the soles non-slip?",
+        "answer": "Yes, designed with safe, anti-slip soles."
+      }
+    ],
+    "suggestedProductIds": [5, 11, 27]
   },
   {
     "_id": 11,
-    "name": "Soft Plush Toy",
-    "category": "Baby Toys",
-    "image": "https://images.pexels.com/photos/3662664/pexels-photo-3662664.jpeg",
-    "description": "Safe, squishy plush toy for your little one.",
-    "price": 350,
-    "offerPrice": 299,
-    "quantity": 25,
-    "isFeatured": true,
-    "isOffer": true
+    "name": "Baby Mittens",
+    "category": "Baby Accessories",
+    "images": [
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg",
+      "https://images.pexels.com/photos/1905664/pexels-photo-1905664.jpeg"
+    ],
+    "description": "Protects baby from scratching themselves.",
+    "price": 200,
+    "offerPrice": 180,
+    "quantity": 40,
+    "isFeatured": false,
+    "isOffer": false,
+    "ratings": {
+      "average": 4.0,
+      "count": 70
+    },
+    "questions": [
+      {
+        "question": "Are they breathable fabric?",
+        "answer": "Yes, made with soft cotton material."
+      }
+    ],
+    "suggestedProductIds": [4, 6, 20]
   },
   {
     "_id": 12,
-    "name": "Baby Carrier",
-    "category": "Baby Gear",
-    "image": "https://images.pexels.com/photos/1319795/pexels-photo-1319795.jpeg",
-    "description": "Secure and comfy front baby carrier.",
-    "price": 1600,
-    "offerPrice": 1350,
-    "quantity": 8,
-    "isFeatured": false,
-    "isOffer": false
+    "name": "Baby Bottle Set",
+    "category": "Baby Feeding",
+    "images": [
+      "https://images.pexels.com/photos/235608/pexels-photo-235608.jpeg",
+      "https://images.pexels.com/photos/235608/pexels-photo-235608.jpeg",
+      "https://images.pexels.com/photos/235608/pexels-photo-235608.jpeg",
+      "https://images.pexels.com/photos/235608/pexels-photo-235608.jpeg"
+    ],
+    "description": "BPA-free bottles with easy grip design.",
+    "price": 1100,
+    "offerPrice": 950,
+    "quantity": 35,
+    "isFeatured": true,
+    "isOffer": false,
+    "ratings": {
+      "average": 4.6,
+      "count": 120
+    },
+    "questions": [
+      {
+        "question": "Are nipples included?",
+        "answer": "Yes, nipples are included with each bottle."
+      }
+    ],
+    "suggestedProductIds": [14, 15, 18]
   },
   {
     "_id": 13,
-    "name": "Pacifier Set",
-    "category": "Feeding",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Pack of 3 BPA-free silicone pacifiers.",
-    "price": 200,
-    "offerPrice": 150,
-    "quantity": 40,
-    "isFeatured": true,
-    "isOffer": true
+    "name": "Baby Stroller",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
+    ],
+    "description": "Lightweight stroller with adjustable recline.",
+    "price": 9000,
+    "offerPrice": 8500,
+    "quantity": 5,
+    "isFeatured": false,
+    "isOffer": true,
+    "ratings": {
+      "average": 4.8,
+      "count": 50
+    },
+    "questions": [
+      {
+        "question": "Is it foldable?",
+        "answer": "Yes, folds easily for compact storage."
+      }
+    ],
+    "suggestedProductIds": [20, 19]
   },
   {
     "_id": 14,
-    "name": "Baby Nail Clippers",
-    "category": "Grooming",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Ergonomic design for safe nail trimming.",
-    "price": 180,
-    "offerPrice": 140,
-    "quantity": 30,
-    "isFeatured": false,
-    "isOffer": false
+    "name": "Baby Crib Mobile",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg"
+    ],
+    "description": "Soothing mobile with soft music and lights.",
+    "price": 1500,
+    "offerPrice": 1300,
+    "quantity": 18,
+    "isFeatured": true,
+    "isOffer": false,
+    "ratings": {
+      "average": 4.3,
+      "count": 80
+    },
+    "questions": [
+      {
+        "question": "Does it have volume control?",
+        "answer": "Yes, adjustable volume settings."
+      }
+    ],
+    "suggestedProductIds": [12, 15, 16]
   },
   {
     "_id": 15,
-    "name": "Tear-Free Baby Shampoo",
-    "category": "Skincare",
-    "image": "https://images.pexels.com/photos/4542304/pexels-photo-4542304.jpeg",
-    "description": "Gentle shampoo that’s easy on the eyes.",
-    "price": 280,
-    "offerPrice": 230,
-    "quantity": 35,
+    "name": "Baby Feeding Chair",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/1619367/pexels-photo-1619367.jpeg",
+      "https://images.pexels.com/photos/1619367/pexels-photo-1619367.jpeg",
+      "https://images.pexels.com/photos/1619367/pexels-photo-1619367.jpeg",
+      "https://images.pexels.com/photos/1619367/pexels-photo-1619367.jpeg"
+    ],
+    "description": "Comfortable and safe chair for feeding time.",
+    "price": 4200,
+    "offerPrice": 3900,
+    "quantity": 10,
     "isFeatured": false,
-    "isOffer": true
+    "isOffer": false,
+    "ratings": {
+      "average": 4.5,
+      "count": 65
+    },
+    "questions": [
+      {
+        "question": "Is it easy to clean?",
+        "answer": "Yes, removable tray for easy cleaning."
+      }
+    ],
+    "suggestedProductIds": [12, 14, 18]
   },
   {
     "_id": 16,
-    "name": "Organic Baby Lotion",
-    "category": "Skincare",
-    "image": "https://images.pexels.com/photos/4542300/pexels-photo-4542300.jpeg",
-    "description": "Hydrating and skin-soothing lotion.",
-    "price": 320,
-    "offerPrice": 270,
+    "name": "Baby Play Mat",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg",
+      "https://images.pexels.com/photos/3661231/pexels-photo-3661231.jpeg"
+    ],
+    "description": "Soft cushioned mat with fun patterns.",
+    "price": 3200,
+    "offerPrice": 3000,
     "quantity": 20,
     "isFeatured": true,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 4.4,
+      "count": 72
+    },
+    "questions": [
+      {
+        "question": "Is it waterproof?",
+        "answer": "Yes, with a waterproof backing."
+      }
+    ],
+    "suggestedProductIds": [14, 15, 17]
   },
   {
     "_id": 17,
-    "name": "Warm Fleece Romper",
-    "category": "Baby Dresses",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Great for keeping baby warm during winter.",
-    "price": 950,
-    "offerPrice": 850,
-    "quantity": 12,
+    "name": "Baby Night Light",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg",
+      "https://images.pexels.com/photos/3712362/pexels-photo-3712362.jpeg"
+    ],
+    "description": "Soft glowing light to comfort baby at night.",
+    "price": 1500,
+    "offerPrice": 1400,
+    "quantity": 25,
     "isFeatured": false,
-    "isOffer": true
+    "isOffer": false,
+    "ratings": {
+      "average": 4.2,
+      "count": 40
+    },
+    "questions": [
+      {
+        "question": "Is it battery operated?",
+        "answer": "Yes, with rechargeable batteries."
+      }
+    ],
+    "suggestedProductIds": [16, 18, 20]
   },
   {
     "_id": 18,
-    "name": "Feeding Bottle",
-    "category": "Feeding",
-    "image": "https://images.pexels.com/photos/1459391/pexels-photo-1459391.jpeg",
-    "description": "BPA-free, anti-colic feeding bottle.",
-    "price": 280,
-    "offerPrice": 220,
-    "quantity": 60,
+    "name": "Baby Bath Tub",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg",
+      "https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg",
+      "https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg",
+      "https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg"
+    ],
+    "description": "Compact and safe tub for newborn bathing.",
+    "price": 2200,
+    "offerPrice": 2100,
+    "quantity": 30,
     "isFeatured": true,
-    "isOffer": false
+    "isOffer": true,
+    "ratings": {
+      "average": 4.6,
+      "count": 85
+    },
+    "questions": [
+      {
+        "question": "Does it have non-slip surface?",
+        "answer": "Yes, for baby’s safety during bath time."
+      }
+    ],
+    "suggestedProductIds": [15, 16, 17]
   },
   {
     "_id": 19,
-    "name": "Toddler Sneakers",
-    "category": "Baby Shoes",
-    "image": "https://images.pexels.com/photos/45910/pexels-photo-45910.jpeg",
-    "description": "Colorful and comfy for early walkers.",
-    "price": 680,
-    "offerPrice": 590,
-    "quantity": 18,
+    "name": "Baby Walker",
+    "category": "Baby Gear",
+    "images": [
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
+    ],
+    "description": "Safe walker with adjustable speed.",
+    "price": 5000,
+    "offerPrice": 4600,
+    "quantity": 7,
     "isFeatured": false,
-    "isOffer": true
+    "isOffer": false,
+    "ratings": {
+      "average": 4.4,
+      "count": 55
+    },
+    "questions": [
+      {
+        "question": "Is it foldable for storage?",
+        "answer": "Yes, easily foldable design."
+      }
+    ],
+    "suggestedProductIds": [13, 20]
   },
   {
     "_id": 20,
-    "name": "Animal Print Bibs",
+    "name": "Baby Pacifier Set",
     "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Fun and functional bibs with animals.",
-    "price": 280,
-    "offerPrice": 220,
-    "quantity": 20,
-    "isFeatured": true,
-    "isOffer": true
-  },
-  {
-    "_id": 21,
-    "name": "Colorful Socks Set",
-    "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
-    "description": "5-pack socks in cute colors and prints.",
-    "price": 340,
-    "offerPrice": 280,
-    "quantity": 42,
-    "isFeatured": false,
-    "isOffer": false
-  },
-  {
-    "_id": 22,
-    "name": "Lightweight Summer Dress",
-    "category": "Baby Dresses",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Airy and soft cotton for hot weather.",
-    "price": 620,
-    "offerPrice": 500,
-    "quantity": 10,
-    "isFeatured": true,
-    "isOffer": false
-  },
-  {
-    "_id": 23,
-    "name": "Baby Wipes Pack",
-    "category": "Skincare",
-    "image": "https://images.pexels.com/photos/2093710/pexels-photo-2093710.jpeg",
-    "description": "Gentle wipes for everyday cleanup.",
-    "price": 200,
-    "offerPrice": 150,
+    "images": [
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg",
+      "https://images.pexels.com/photos/1574843/pexels-photo-1574843.jpeg"
+    ],
+    "description": "Silicone pacifiers with orthodontic design.",
+    "price": 350,
+    "offerPrice": 300,
     "quantity": 80,
     "isFeatured": true,
-    "isOffer": true
-  },
-  {
-    "_id": 24,
-    "name": "Teething Ring",
-    "category": "Baby Accessories",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Safe and soft teether for sore gums.",
-    "price": 180,
-    "offerPrice": 130,
-    "quantity": 60,
-    "isFeatured": false,
-    "isOffer": true
-  },
-  {
-    "_id": 25,
-    "name": "Cartoon Pajama Set",
-    "category": "Baby Dresses",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Comfy nightwear with cartoon print.",
-    "price": 550,
-    "offerPrice": 470,
-    "quantity": 25,
-    "isFeatured": false,
-    "isOffer": false
-  },
-  {
-    "_id": 26,
-    "name": "Bath Towel Wrap",
-    "category": "Skincare",
-    "image": "https://images.pexels.com/photos/1459391/pexels-photo-1459391.jpeg",
-    "description": "Super absorbent and soft on skin.",
-    "price": 700,
-    "offerPrice": 600,
-    "quantity": 14,
-    "isFeatured": true,
-    "isOffer": true
-  },
-  {
-    "_id": 27,
-    "name": "Knitted Booties",
-    "category": "Baby Shoes",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Cute and cozy hand-knit booties.",
-    "price": 400,
-    "offerPrice": 320,
-    "quantity": 10,
-    "isFeatured": true,
-    "isOffer": false
-  },
-  {
-    "_id": 28,
-    "name": "Baby Comb Set",
-    "category": "Grooming",
-    "image": "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg",
-    "description": "Soft-bristled combs for baby’s hair.",
-    "price": 180,
-    "offerPrice": 140,
-    "quantity": 33,
-    "isFeatured": false,
-    "isOffer": false
-  },
-  {
-    "_id": 29,
-    "name": "Bath Toy Set",
-    "category": "Baby Toys",
-    "image": "https://images.pexels.com/photos/3662664/pexels-photo-3662664.jpeg",
-    "description": "Floating toys for bath time fun.",
-    "price": 350,
-    "offerPrice": 290,
-    "quantity": 20,
-    "isFeatured": false,
-    "isOffer": true
-  },
-  {
-    "_id": 30,
-    "name": "Travel Changing Mat",
-    "category": "Baby Gear",
-    "image": "https://images.pexels.com/photos/1319795/pexels-photo-1319795.jpeg",
-    "description": "Portable changing mat for on-the-go.",
-    "price": 500,
-    "offerPrice": 420,
-    "quantity": 12,
-    "isFeatured": true,
-    "isOffer": false
+    "isOffer": false,
+    "ratings": {
+      "average": 4.3,
+      "count": 110
+    },
+    "questions": [
+      {
+        "question": "Are pacifiers BPA-free?",
+        "answer": "Yes, completely BPA-free and safe."
+      }
+    ],
+    "suggestedProductIds": [6, 8, 11]
   }
 ]

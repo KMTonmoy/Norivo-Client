@@ -15,7 +15,12 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: -20 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -49,10 +54,17 @@ const BlogSection = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto">
-      <div className="flex items-center justify-center mb-10 gap-2">
+      <motion.div
+        className="flex items-center justify-center mb-10 gap-2"
+        variants={titleVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <FaRegNewspaper className="text-[#3bb77e] text-3xl" />
         <h2 className="text-3xl font-bold text-[#3bb77e]">Latest Blogs</h2>
-      </div>
+      </motion.div>
 
       {loading ? (
         <p className="text-center text-gray-500">Loading blogs...</p>
@@ -61,7 +73,8 @@ const BlogSection = () => {
           className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           {blogs.map(({ _id, title, excerpt, image, date }) => {
             const truncatedTitle = truncateTitle(title, 50);
@@ -72,8 +85,8 @@ const BlogSection = () => {
                 key={_id}
                 className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow"
                 variants={cardVariants}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 120, damping: 15 }}
               >
                 <img
                   src={image}
