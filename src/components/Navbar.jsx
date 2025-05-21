@@ -1,18 +1,30 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Search, ShoppingBag, User, ChevronDown } from "lucide-react";
+import {
+  Search,
+  ShoppingBag,
+  User,
+  ChevronDown,
+  LogOut,
+  LayoutDashboard,
+  User as UserIcon,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
+import { AuthContext } from "@/Provider/AuthProvider";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [megaMenuPos, setMegaMenuPos] = useState({ left: 0, top: 0, width: 0 });
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const triggerRef = useRef(null);
   const megaMenuRef = useRef(null);
+  const userMenuRef = useRef(null);
   const pathName = usePathname();
+  const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,17 +46,14 @@ const Navbar = () => {
   };
 
   const handleToggleMegaMenu = () => {
-    if (!showMegaMenu) {
-      calculateMegaMenuPos();
-    }
+    if (!showMegaMenu) calculateMegaMenuPos();
     setShowMegaMenu((prev) => !prev);
   };
 
   useEffect(() => {
-    if (!showMegaMenu) return;
-
     const handleClickOutside = (event) => {
       if (
+        showMegaMenu &&
         megaMenuRef.current &&
         !megaMenuRef.current.contains(event.target) &&
         triggerRef.current &&
@@ -52,11 +61,18 @@ const Navbar = () => {
       ) {
         setShowMegaMenu(false);
       }
-    };
 
+      if (
+        showUserMenu &&
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target)
+      ) {
+        setShowUserMenu(false);
+      }
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showMegaMenu]);
+  }, [showMegaMenu, showUserMenu]);
 
   const navLinks = [
     { title: "Home", href: "/" },
@@ -69,7 +85,7 @@ const Navbar = () => {
 
   const activeColor = "text-[#3BB77E]";
   const hoverColor = "hover:text-[#3BB77E]";
-
+console.log(user)
   return (
     <motion.div
       initial={{ y: -50, opacity: 0 }}
@@ -109,13 +125,75 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-5">
-          <a
-            href="/login"
-            className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition"
-          >
-            <User className="w-5 h-5" />
-            <span>Account</span>
-          </a>
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setShowUserMenu((prev) => !prev)}
+                className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition focus:outline-none"
+              >
+                <img
+                  src={user?.photoURL}
+                  alt="User Avatar"
+                  className="w-7 h-7 rounded-full object-cover border-2 border-[#3BB77E]"
+                />
+                <span>Account</span>
+              </button>
+              {showUserMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50"
+                >
+                  <div className="p-3 border-b text-sm text-gray-700">
+                    <p className="font-semibold truncate">{user.displayName}</p>
+                    <p className="text-xs truncate text-gray-500">{user.email}</p>
+                  </div>
+                  <ul className="text-sm text-gray-700 divide-y">
+                    <li>
+                      <Link
+                        href="/dashboard"
+                        className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 transition"
+                      >
+                        <LayoutDashboard size={16} />
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/profile"
+                        className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 transition"
+                      >
+                        <UserIcon size={16} />
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          logOut?.();
+                          setShowUserMenu(false);
+                        }}
+                        className="flex items-center gap-2 w-full px-4 py-2 text-left hover:bg-gray-100 transition"
+                      >
+                        <LogOut size={16} />
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </motion.div>
+              )}
+            </div>
+          ) : (
+            <a
+              href="/login"
+              className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition"
+            >
+              <User className="w-5 h-5" />
+              <span>Account</span>
+            </a>
+          )}
+
           <a
             href="/cart"
             className="flex flex-col items-center text-xs hover:text-[#3BB77E] transition"
@@ -178,9 +256,9 @@ const Navbar = () => {
           style={{
             top: megaMenuPos.top + window.scrollY + 8,
             left: megaMenuPos.left,
-            width: "min(90vw, 600px)", 
-            minWidth: 480, 
-            maxWidth: "calc(100vw - 2rem)",  
+            width: "min(90vw, 600px)",
+            minWidth: 480,
+            maxWidth: "calc(100vw - 2rem)",
             overflow: "visible",
           }}
         >
@@ -188,43 +266,25 @@ const Navbar = () => {
             <div>
               <h4 className="font-semibold mb-2">Clothing</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li>
-                  <Link href="#">Newborn (0-6M)</Link>
-                </li>
-                <li>
-                  <Link href="#">Toddlers (1-3Y)</Link>
-                </li>
-                <li>
-                  <Link href="#">Kids (4-7Y)</Link>
-                </li>
+                <li><Link href="#">Newborn (0-6M)</Link></li>
+                <li><Link href="#">Toddlers (1-3Y)</Link></li>
+                <li><Link href="#">Kids (4-7Y)</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Toys</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li>
-                  <Link href="#">Soft Toys</Link>
-                </li>
-                <li>
-                  <Link href="#">Learning Toys</Link>
-                </li>
-                <li>
-                  <Link href="#">Outdoor Toys</Link>
-                </li>
+                <li><Link href="#">Soft Toys</Link></li>
+                <li><Link href="#">Learning Toys</Link></li>
+                <li><Link href="#">Outdoor Toys</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Essentials</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li>
-                  <Link href="#">Diapers</Link>
-                </li>
-                <li>
-                  <Link href="#">Baby Bath</Link>
-                </li>
-                <li>
-                  <Link href="#">Feeding Bottles</Link>
-                </li>
+                <li><Link href="#">Diapers</Link></li>
+                <li><Link href="#">Baby Bath</Link></li>
+                <li><Link href="#">Feeding Bottles</Link></li>
               </ul>
             </div>
           </div>

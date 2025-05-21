@@ -1,0 +1,68 @@
+[
+  {
+    "_id": 5,
+    "name": "Patterned Romper",
+    "category": "Baby Onesies",
+    "images": [
+      "https://images.pexels.com/photos/774914/pexels-photo-774914.jpeg"
+    ],
+    "description": "One-piece with snap closure for easy diaper change.",
+    "price": 480,
+    "offerPrice": 430,
+    "quantity": 18,
+    "buyQty": 2,
+    "isFeatured": true,
+    "isOffer": false,
+    "ratings": {
+      "average": 5,
+      "count": 95
+    },
+    "questions": [
+      {
+        "question": "Is the fabric soft?",
+        "answer": "Yes, made from soft breathable cotton."
+      }
+    ]
+  },
+  {
+    "_id": 6,
+    "name": "Floral Dress",
+    "category": "Girls Dresses",
+    "images": [
+      "https://images.pexels.com/photos/1619814/pexels-photo-1619814.jpeg"
+    ],
+    "description": "Summer floral dress for toddlers.",
+    "price": 650,
+    "offerPrice": 580,
+    "quantity": 10,
+    "buyQty": 1,
+    "isFeatured": true,
+    "isOffer": true,
+    "ratings": {
+      "average": 4.8,
+      "count": 87
+    },
+    "questions": [],
+    "cartUserEmail":"hwllo@gmail.com"
+  },
+  {
+    "_id": 7,
+    "name": "Blue Hoodie",
+    "category": "Kids Wear",
+    "images": [
+      "https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg"
+    ],
+    "description": "Warm and cozy hoodie for winter.",
+    "price": 700,
+    "quantity": 15,
+    "buyQty": 0,
+    "isFeatured": false,
+    "isOffer": false,
+    "ratings": {
+      "average": 4.5,
+      "count": 50
+    },
+    "questions": [],
+    "cartUserEmail":"hello@gmail.com"
+  }
+]
