@@ -21,8 +21,7 @@
     "offerPrice": 270,
     "quantity": 30,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T14:30:00Z"
+    "isOffer": true
   },
   {
     "_id": 3,
@@ -46,8 +45,7 @@
     "offerPrice": 199,
     "quantity": 40,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T15:00:00Z"
+    "isOffer": true
   },
   {
     "_id": 5,
@@ -71,8 +69,7 @@
     "offerPrice": 250,
     "quantity": 50,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T15:15:00Z"
+    "isOffer": true
   },
   {
     "_id": 7,
@@ -84,8 +81,7 @@
     "offerPrice": 500,
     "quantity": 15,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T16:00:00Z"
+    "isOffer": true
   },
   {
     "_id": 8,
@@ -109,8 +105,7 @@
     "offerPrice": 600,
     "quantity": 10,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T16:20:00Z"
+    "isOffer": true
   },
   {
     "_id": 10,
@@ -134,8 +129,7 @@
     "offerPrice": 299,
     "quantity": 25,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T17:00:00Z"
+    "isOffer": true
   },
   {
     "_id": 12,
@@ -159,8 +153,7 @@
     "offerPrice": 150,
     "quantity": 40,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T14:50:00Z"
+    "isOffer": true
   },
   {
     "_id": 14,
@@ -184,8 +177,7 @@
     "offerPrice": 230,
     "quantity": 35,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T14:45:00Z"
+    "isOffer": true
   },
   {
     "_id": 16,
@@ -209,8 +201,7 @@
     "offerPrice": 850,
     "quantity": 12,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T16:45:00Z"
+    "isOffer": true
   },
   {
     "_id": 18,
@@ -234,8 +225,7 @@
     "offerPrice": 590,
     "quantity": 18,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T17:15:00Z"
+    "isOffer": true
   },
   {
     "_id": 20,
@@ -247,8 +237,7 @@
     "offerPrice": 220,
     "quantity": 20,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T17:20:00Z"
+    "isOffer": true
   },
   {
     "_id": 21,
@@ -284,8 +273,7 @@
     "offerPrice": 150,
     "quantity": 80,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T18:00:00Z"
+    "isOffer": true
   },
   {
     "_id": 24,
@@ -297,8 +285,7 @@
     "offerPrice": 130,
     "quantity": 60,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T18:15:00Z"
+    "isOffer": true
   },
   {
     "_id": 25,
@@ -322,8 +309,7 @@
     "offerPrice": 600,
     "quantity": 14,
     "isFeatured": true,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T18:30:00Z"
+    "isOffer": true
   },
   {
     "_id": 27,
@@ -359,8 +345,7 @@
     "offerPrice": 290,
     "quantity": 20,
     "isFeatured": false,
-    "isOffer": true,
-    "offerEndTime": "2025-05-21T18:50:00Z"
+    "isOffer": true
   },
   {
     "_id": 30,

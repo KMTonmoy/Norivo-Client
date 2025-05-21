@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "1",
+    "title": "How to Care for Your Baby",
+    "excerpt": "Tips and tricks for baby care that every parent should know.",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    "date": "2025-04-15"
+  },
+  {
+    "_id": "2",
+    "title": "Choosing the Best Baby Products",
+    "excerpt": "A complete guide to selecting safe and reliable baby products.",
+    "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80",
+    "date": "2025-05-01"
+  },
+  {
+    "_id": "3",
+    "title": "Nutrition Tips for Babies",
+    "excerpt": "Ensure your baby gets the right nutrients for healthy growth.",
+    "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=600&q=80",
+    "date": "2025-05-10"
+  }
+]

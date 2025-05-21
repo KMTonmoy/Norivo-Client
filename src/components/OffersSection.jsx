@@ -3,8 +3,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
- 
- 
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
+
 const Countdown = ({ endTime }) => {
   const [remaining, setRemaining] = useState("");
 
@@ -37,6 +39,8 @@ const Countdown = ({ endTime }) => {
 
 const OffersSection = () => {
   const [offers, setOffers] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const SHOW_LIMIT = 8;
 
   useEffect(() => {
     axios.get("/products.json").then((res) => {
@@ -45,14 +49,17 @@ const OffersSection = () => {
     });
   }, []);
 
+  // Decide which offers to show based on showAll state
+  const displayedOffers = showAll ? offers : offers.slice(0, SHOW_LIMIT);
+
   return (
-    <section className="py-16  ">
+    <section className="py-16">
       <h2 className="text-3xl font-bold text-center text-orange-600 mb-10">
         Flash Deals 🔥
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-4">
-        {offers.map((product) => {
+        {displayedOffers.map((product) => {
           const discountPercent = Math.round(
             ((product.price - product.offerPrice) / product.price) * 100
           );
@@ -95,11 +102,24 @@ const OffersSection = () => {
                 Quantity: {product.quantity}
               </p>
 
-              
+              {/* Countdown timer only if offerEndTime exists (assuming you add this field) */}
+              {product.offerEndTime && <Countdown endTime={product.offerEndTime} />}
             </div>
           );
         })}
       </div>
+
+      {/* Show More / Show Less Button */}
+      {offers.length > SHOW_LIMIT && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="bg-[#3bb77e] hover:bg-[#34a46b] text-white font-semibold py-2 px-6 rounded-lg transition"
+          >
+            {showAll ? "Show Less" : "Show More"}
+          </button>
+        </div>
+      )}
     </section>
   );
 };
