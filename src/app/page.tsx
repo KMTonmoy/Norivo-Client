@@ -5,6 +5,8 @@ import FeaturedProducts from '../components/FeaturedProductsSection';
 import OffersSection from '../components/OffersSection';
 import BlogSection from '../components/BlogSection';
 import Newsletter from '../components/Newsletter';
+import ContactSection from '../components/Contact';
+import Faq from '../components/Faq';
 
 const page = () => {
   return (
@@ -16,6 +18,8 @@ const page = () => {
         <OffersSection/>
         <BlogSection/>
         <Newsletter/>
+        <ContactSection/>
+        <Faq/>
       </div>
 
     </div>
