@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Floral Baby Dress",
+    "category": "Baby Dresses",
+    "image": "https://www.cutedoll.in/cdn/shop/files/448063571_18035089433307195_2534377241178630605_n.jpg?v=1737811550",
+    "description": "Lightweight cotton dress for summer comfort.",
+    "price": 650,
+    "offerPrice": 550,
+    "quantity": 15,
+    "isFeatured": true
+  },
+  {
+    "id": 2,
+    "name": "Infant Bodysuit",
+    "category": "Baby Onesies",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Baby_in_an_infant_bodysuit.jpg/1200px-Baby_in_an_infant_bodysuit.jpg",
+    "description": "Soft organic cotton bodysuit for infants.",
+    "price": 400,
+    "offerPrice": 350,
+    "quantity": 25,
+    "isFeatured": true
+  },
+  {
+    "id": 3,
+    "name": "Soft Baby Shoes",
+    "category": "Baby Shoes",
+    "image": "https://static-01.daraz.com.bd/p/401fb16075bb319198acb16405bf5c03.jpg",
+    "description": "Non-slip soft sole shoes for toddlers.",
+    "price": 550,
+    "offerPrice": null,
+    "quantity": 30,
+    "isFeatured": false
+  },
+  {
+    "id": 4,
+    "name": "Baby Beanie Cap",
+    "category": "Baby Accessories",
+    "image": "https://m.media-amazon.com/images/I/81O3DnC0p5L._AC_SL1500_.jpg",
+    "description": "Warm knitted cap for newborns.",
+    "price": 300,
+    "offerPrice": 250,
+    "quantity": 20,
+    "isFeatured": true
+  },
+  {
+    "id": 5,
+    "name": "Printed Romper",
+    "category": "Baby Onesies",
+    "image": "https://i.ibb.co/Nj3c90s/romper.jpg",
+    "description": "Colorful romper with cute prints.",
+    "price": 500,
+    "offerPrice": 450,
+    "quantity": 18,
+    "isFeatured": false
+  },
+  {
+    "id": 6,
+    "name": "Knitted Sweater",
+    "category": "Baby Dresses",
+    "image": "https://i.ibb.co/y4jGmVP/sweater.jpg",
+    "description": "Hand-knitted sweater for colder days.",
+    "price": 900,
+    "offerPrice": 800,
+    "quantity": 10,
+    "isFeatured": true
+  },
+  {
+    "id": 7,
+    "name": "Baby Sunglasses",
+    "category": "Baby Accessories",
+    "image": "https://i.ibb.co/jZxXZdp/sunglasses.jpg",
+    "description": "UV protection sunglasses for kids.",
+    "price": 450,
+    "offerPrice": 399,
+    "quantity": 12,
+    "isFeatured": true
+  },
+  {
+    "id": 8,
+    "name": "Soft Cotton Blanket",
+    "category": "Baby Accessories",
+    "image": "https://i.ibb.co/BVj8Fb9/blanket.jpg",
+    "description": "Fluffy warm blanket for babies.",
+    "price": 1200,
+    "offerPrice": null,
+    "quantity": 8,
+    "isFeatured": false
+  },
+  {
+    "id": 9,
+    "name": "Velcro Sneakers",
+    "category": "Baby Shoes",
+    "image": "https://i.ibb.co/2qLmvZ3/sneakers.jpg",
+    "description": "Easy-to-wear sneakers with velcro straps.",
+    "price": 700,
+    "offerPrice": 600,
+    "quantity": 16,
+    "isFeatured": true
+  },
+  {
+    "id": 10,
+    "name": "Baby Tutu Skirt",
+    "category": "Baby Dresses",
+    "image": "https://i.ibb.co/FmNvqXG/tutu.jpg",
+    "description": "Perfect for party dress-up!",
+    "price": 850,
+    "offerPrice": 749,
+    "quantity": 6,
+    "isFeatured": true
+  },
+  {
+    "id": 11,
+    "name": "Cute Socks Set",
+    "category": "Baby Accessories",
+    "image": "https://i.ibb.co/XFSbj8k/socks.jpg",
+    "description": "Pack of 5 colorful soft socks.",
+    "price": 350,
+    "offerPrice": 299,
+    "quantity": 40,
+    "isFeatured": false
+  },
+  {
+    "id": 12,
+    "name": "Animal Print Bibs",
+    "category": "Baby Accessories",
+    "image": "https://i.ibb.co/Zc9B7PR/bibs.jpg",
+    "description": "Absorbent and easy to clean bibs.",
+    "price": 250,
+    "offerPrice": 200,
+    "quantity": 35,
+    "isFeatured": true
+  }
+]

@@ -8,7 +8,7 @@ const slides = [
     id: 1,
     image:
       "https://violettefieldthreads.com/cdn/shop/products/VioletteFields4.jpg?v=1571438702&width=1080",
-    title: "Welcome to Violette Fields",
+    title: "Welcome to Norivo Shop",
     subtitle: "Explore our beautiful handmade collections",
   },
   {
