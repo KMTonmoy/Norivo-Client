@@ -42,7 +42,7 @@ const BlogSection = () => {
 
   useEffect(() => {
     axios
-      .get("/blogs.json")
+      .get("https://norivo-backend.vercel.app/blogs")
       .then((res) => {
         setBlogs(res.data);
         setLoading(false);

@@ -33,7 +33,7 @@ const AddProductPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://localhost:8000/categories");
+        const res = await fetch("https://norivo-backend.vercel.app/categories");
         const data = await res.json();
         setCategories(data);
       } catch (error) {
@@ -78,7 +78,7 @@ const AddProductPage = () => {
         suggestedProductIds: [],
       };
 
-      await axios.post("http://localhost:8000/products", productData);
+      await axios.post("https://norivo-backend.vercel.app/products", productData);
       Swal.fire("Success", "Product added successfully!", "success");
 
       setName("");

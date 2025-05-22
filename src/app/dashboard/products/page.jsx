@@ -10,7 +10,7 @@ const ManageProduct = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/products");
+      const res = await axios.get("https://norivo-backend.vercel.app/products");
       setProducts(res.data);
     } catch (error) {
       console.error("Failed to load products");
@@ -32,7 +32,7 @@ const ManageProduct = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:8000/products/${id}`);
+        await axios.delete(`https://norivo-backend.vercel.app/products/${id}`);
         Swal.fire("Deleted!", "Product has been deleted.", "success");
         fetchProducts();
       } catch (error) {
@@ -70,7 +70,7 @@ const ManageProduct = () => {
 
     try {
       await axios.patch(
-        `http://localhost:8000/products/${editingProduct._id}`,
+        `https://norivo-backend.vercel.app/products/${editingProduct._id}`,
         {
           ...editingProduct,
           images: updatedImages,

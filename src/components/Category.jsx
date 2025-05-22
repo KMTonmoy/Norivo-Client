@@ -10,7 +10,7 @@ const CategoriesSection = () => {
 
   useEffect(() => {
     axios
-      .get("/categories.json")
+      .get("https://norivo-backend.vercel.app/categories")
       .then((response) => {
         setCategories(response.data);
         setLoading(false);

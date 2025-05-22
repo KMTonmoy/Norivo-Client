@@ -15,7 +15,7 @@ const AddCoupon = () => {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:8000/coupons", {
+      await axios.post("https://norivo-backend.vercel.app/coupons", {
         code: couponCode,
         title: couponTitle,
         description: couponDescription,

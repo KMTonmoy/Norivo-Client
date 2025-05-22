@@ -58,7 +58,7 @@ const Page = () => {
         subtitle: description,
       };
 
-      const response = await axios.post("http://localhost:8000/banners", payload);
+      const response = await axios.post("https://norivo-backend.vercel.app/banners", payload);
 
       Swal.fire({
         title: "Submitted Successfully",

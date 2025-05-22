@@ -39,7 +39,7 @@ const FeaturedProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("/products.json");
+      const res = await axios.get("https://norivo-backend.vercel.app/products");
       const featured = res.data.filter((item) => item.isFeatured === true);
       const shuffled = shuffleArray(featured);
       setAllProducts(shuffled);

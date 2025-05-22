@@ -31,7 +31,7 @@ const EditBanner = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8000/banners');
+      const response = await fetch('https://norivo-backend.vercel.app/banners');
       if (!response.ok) throw new Error('Failed to fetch banner data');
       const data = await response.json();
       setImages(data);
@@ -58,7 +58,7 @@ const EditBanner = () => {
     });
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:8000/banners/${id}`, { method: 'DELETE' });
+        const response = await fetch(`https://norivo-backend.vercel.app/banners/${id}`, { method: 'DELETE' });
         if (!response.ok) throw new Error('Failed to delete the banner');
         await fetchBannerData();
         Swal.fire('Deleted!', 'Your banner has been deleted.', 'success');
@@ -104,7 +104,7 @@ const EditBanner = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/banners/${_id}`, {
+      const response = await fetch(`https://norivo-backend.vercel.app/banners/${_id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatePayload),

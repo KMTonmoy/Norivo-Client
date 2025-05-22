@@ -25,7 +25,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("/products.json");
+        const res = await axios.get("https://norivo-backend.vercel.app/products");
         setAllProducts(res.data);
 
         const cats = Array.from(new Set(res.data.map((p) => p.category))).sort();

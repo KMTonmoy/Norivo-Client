@@ -48,7 +48,7 @@ const OffersSection = () => {
 
   useEffect(() => {
     axios
-      .get("/products.json")
+      .get("https://norivo-backend.vercel.app/products")
       .then((res) => {
         const filtered = res.data.filter((item) => item.isOffer === true);
         setOffers(filtered);

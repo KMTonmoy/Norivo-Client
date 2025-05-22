@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
   const logOut = async () => {
     setLoading(true);
     try {
-      await axios.get(`http://localhost:8000/logout`, {
+      await axios.get(`https://norivo-backend.vercel.app/logout`, {
         withCredentials: true,
       });
         await signOut(auth);
@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
   const saveUser = async user => {
     try {
       const existingUserResponse = await axios.get(
-        `http://localhost:8000/users/${user?.email}`
+        `https://norivo-backend.vercel.app/users/${user?.email}`
       );
       const existingUser = existingUserResponse.data;
 
@@ -109,7 +109,7 @@ const AuthProvider = ({ children }) => {
         role: 'user',
       };
       const { data } = await axios.put(
-        `http://localhost:8000/user`,
+        `https://norivo-backend.vercel.app/user`,
         currentUser
       );
       return data;

@@ -27,7 +27,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:8000/users/${email}`)
+      fetch(`https://norivo-backend.vercel.app/users/${email}`)
         .then((res) => res.json())
         .then(setData)
         .catch(console.error);

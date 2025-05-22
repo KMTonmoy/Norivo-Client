@@ -20,7 +20,7 @@ const ManageCoupon = () => {
 
   const fetchCoupons = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/coupons");
+      const res = await axios.get("https://norivo-backend.vercel.app/coupons");
       setCoupons(res.data);
     } catch (error) {
       toast.error("Failed to fetch coupons");
@@ -55,7 +55,7 @@ const ManageCoupon = () => {
 
     setLoading(true);
     try {
-      await axios.patch(`http://localhost:8000/coupons/${id}`, {
+      await axios.patch(`https://norivo-backend.vercel.app/coupons/${id}`, {
         code: editCode,
         title: editTitle,
         description: editDescription,
@@ -76,7 +76,7 @@ const ManageCoupon = () => {
     if (!window.confirm("Are you sure you want to delete this coupon?")) return;
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:8000/coupons/${id}`);
+      await axios.delete(`https://norivo-backend.vercel.app/coupons/${id}`);
       toast.success("Coupon deleted successfully");
       fetchCoupons();
     } catch (error) {
