@@ -78,14 +78,13 @@ const Navbar = () => {
     { title: "Home", href: "/" },
     { title: "Products", href: "/products" },
     { title: "Blog", href: "/blog" },
-    { title: "Pages", href: "/pages" },
     { title: "Offers", href: "/offers" },
     { title: "Contact", href: "/contact" },
   ];
 
   const activeColor = "text-[#3BB77E]";
   const hoverColor = "hover:text-[#3BB77E]";
-console.log(user)
+  console.log(user);
   return (
     <motion.div
       initial={{ y: -50, opacity: 0 }}
@@ -147,7 +146,9 @@ console.log(user)
                 >
                   <div className="p-3 border-b text-sm text-gray-700">
                     <p className="font-semibold truncate">{user.displayName}</p>
-                    <p className="text-xs truncate text-gray-500">{user.email}</p>
+                    <p className="text-xs truncate text-gray-500">
+                      {user.email}
+                    </p>
                   </div>
                   <ul className="text-sm text-gray-700 divide-y">
                     <li>
@@ -266,25 +267,43 @@ console.log(user)
             <div>
               <h4 className="font-semibold mb-2">Clothing</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="#">Newborn (0-6M)</Link></li>
-                <li><Link href="#">Toddlers (1-3Y)</Link></li>
-                <li><Link href="#">Kids (4-7Y)</Link></li>
+                <li>
+                  <Link href="#">Newborn (0-6M)</Link>
+                </li>
+                <li>
+                  <Link href="#">Toddlers (1-3Y)</Link>
+                </li>
+                <li>
+                  <Link href="#">Kids (4-7Y)</Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Toys</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="#">Soft Toys</Link></li>
-                <li><Link href="#">Learning Toys</Link></li>
-                <li><Link href="#">Outdoor Toys</Link></li>
+                <li>
+                  <Link href="#">Soft Toys</Link>
+                </li>
+                <li>
+                  <Link href="#">Learning Toys</Link>
+                </li>
+                <li>
+                  <Link href="#">Outdoor Toys</Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Essentials</h4>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="#">Diapers</Link></li>
-                <li><Link href="#">Baby Bath</Link></li>
-                <li><Link href="#">Feeding Bottles</Link></li>
+                <li>
+                  <Link href="#">Diapers</Link>
+                </li>
+                <li>
+                  <Link href="#">Baby Bath</Link>
+                </li>
+                <li>
+                  <Link href="#">Feeding Bottles</Link>
+                </li>
               </ul>
             </div>
           </div>
