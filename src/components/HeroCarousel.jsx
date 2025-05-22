@@ -4,6 +4,13 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
+const SkeletonSlide = () => (
+  <div className="absolute inset-0 bg-gray-300 animate-pulse flex items-center justify-center">
+    <div className="w-64 h-10 bg-gray-400 rounded mb-4"></div>
+    <div className="w-40 h-6 bg-gray-400 rounded"></div>
+  </div>
+);
+
 const HeroCarousel = () => {
   const [slides, setSlides] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,6 +30,7 @@ const HeroCarousel = () => {
   }, []);
 
   useEffect(() => {
+    if (slides.length === 0) return; // don't start interval if no slides
     slideIntervalRef.current = setInterval(() => {
       nextSlide();
     }, 5000);
@@ -51,34 +59,45 @@ const HeroCarousel = () => {
       className="relative overflow-hidden select-none"
       style={{ height: "65vh", maxHeight: "70vh", minHeight: "60vh" }}
     >
-      {slides.map((slide, index) => (
-        <div
-          key={slide._id}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            index === currentIndex
-              ? "opacity-100 z-10"
-              : "opacity-0 z-0 pointer-events-none"
-          }`}
-          style={{
-            backgroundImage: `url(${slide.image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-[#0000004b] bg-opacity-70"></div>
-
-          {index === currentIndex && (
-            <div className="relative z-20 max-w-lg ml-16 mt-auto mb-auto top-1/2 transform -translate-y-1/2 text-left text-white">
-              <h1 className="text-4xl md:text-5xl font-bold drop-shadow-md">
-                {slide.title}
-              </h1>
-              <p className="mt-3 text-lg md:text-xl drop-shadow-sm">
-                {slide.subtitle}
-              </p>
-            </div>
-          )}
+      {slides.length === 0 ? (
+        // Skeleton while loading
+        <div className="relative w-full h-full bg-gray-300 animate-pulse">
+          <div className="absolute inset-0 bg-gray-400 bg-opacity-60"></div>
+          <div className="absolute top-1/2 left-16 transform -translate-y-1/2 max-w-lg space-y-4">
+            <div className="w-48 h-10 rounded bg-gray-500"></div>
+            <div className="w-64 h-6 rounded bg-gray-500"></div>
+          </div>
         </div>
-      ))}
+      ) : (
+        slides.map((slide, index) => (
+          <div
+            key={slide._id}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentIndex
+                ? "opacity-100 z-10"
+                : "opacity-0 z-0 pointer-events-none"
+            }`}
+            style={{
+              backgroundImage: `url(${slide.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-[#0000004b] bg-opacity-70"></div>
+
+            {index === currentIndex && (
+              <div className="relative z-20 max-w-lg ml-16 mt-auto mb-auto top-1/2 transform -translate-y-1/2 text-left text-white">
+                <h1 className="text-4xl md:text-5xl font-bold drop-shadow-md">
+                  {slide.title}
+                </h1>
+                <p className="mt-3 text-lg md:text-xl drop-shadow-sm">
+                  {slide.subtitle}
+                </p>
+              </div>
+            )}
+          </div>
+        ))
+      )}
 
       {/* Nav Buttons */}
       <div className="absolute bottom-6 right-6 flex gap-2 z-20">
@@ -86,6 +105,7 @@ const HeroCarousel = () => {
           onClick={prevSlide}
           aria-label="Previous Slide"
           className="bg-white bg-opacity-20 hover:bg-opacity-40 text-black rounded-full p-2 shadow-lg transition transform hover:scale-110 focus:outline-none flex items-center justify-center"
+          disabled={slides.length === 0}
         >
           <FiChevronLeft size={24} />
         </button>
@@ -93,6 +113,7 @@ const HeroCarousel = () => {
           onClick={nextSlide}
           aria-label="Next Slide"
           className="bg-white bg-opacity-20 hover:bg-opacity-40 text-black rounded-full p-2 shadow-lg transition transform hover:scale-110 focus:outline-none flex items-center justify-center"
+          disabled={slides.length === 0}
         >
           <FiChevronRight size={24} />
         </button>

@@ -16,7 +16,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (_id) {
       axios
-        .get(`http://localhost:8000/products/${_id}`)
+        .get(`https://norivo-backend.vercel.app/products/${_id}`)
         .then((res) => {
           setProduct(res.data);
           setMainImage(res.data.images?.[0]);
@@ -28,7 +28,7 @@ const ProductDetails = () => {
 
   const fetchRelated = async (category, currentId) => {
     try {
-      const { data } = await axios.get("http://localhost:8000/products");
+      const { data } = await axios.get("https://norivo-backend.vercel.app/products");
       const filtered = data
         .filter((item) => item.category === category && item._id !== currentId)
         .slice(0, 8);
