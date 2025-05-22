@@ -7,18 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast, Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 
-export const imageUpload = async (image) => {
-  const formData = new FormData();
-  formData.append("image", image);
-
-  const { data } = await axios.post(
-    "https://api.imgbb.com/1/upload?key=19c9072b07556f7849d6dea75b7e834d",
-    formData
-  );
-
-  return data.data.display_url;
-};
-
 const ManageCategory = () => {
   const [categories, setCategories] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,11 +23,23 @@ const ManageCategory = () => {
     fetchCategories();
   }, []);
 
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const { data } = await axios.post(
+      "https://api.imgbb.com/1/upload?key=19c9072b07556f7849d6dea75b7e834d",
+      formData
+    );
+
+    return data.data.display_url;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let imageUrl = formData.image;
     if (imageFile) {
-      imageUrl = await imageUpload(imageFile);
+      imageUrl = await uploadImage(imageFile);
     }
 
     if (editId) {
