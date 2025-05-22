@@ -20,8 +20,7 @@ const Page = () => {
     setLoading(true);
     try {
       await signIn(email, password);
-      // Optionally redirect after login (e.g., router.push('/dashboard'))
-    } catch (err) {
+     } catch (err) {
       setError(err.message || 'Login failed');
     } finally {
       setLoading(false);

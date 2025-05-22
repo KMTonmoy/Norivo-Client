@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://way-go-backend.vercel.app",
+  baseURL: "http://localhost:8000",
 });
 
 const useAxiosPublic = () => {

@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAgo3Hj3cXgAKv5udBPVuqkoliAZMuu2YU",
-  authDomain: "waygo-5a34c.firebaseapp.com",
-  projectId: "waygo-5a34c",
-  storageBucket: "waygo-5a34c.appspot.com",
-  messagingSenderId: "201996522770",
-  appId: "1:201996522770:web:cad95e8d632671cc3d0fcb"
+  apiKey: "AIzaSyD6UMhNjj_fN9VzU45WP6kavxWwtmZNBfw",
+  authDomain: "norivo.firebaseapp.com",
+  projectId: "norivo",
+  storageBucket: "norivo.firebasestorage.app",
+  messagingSenderId: "901131023253",
+  appId: "1:901131023253:web:c93275038b94f44462fc9c"
 };
 
 export const app = initializeApp(firebaseConfig);
