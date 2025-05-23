@@ -34,7 +34,9 @@ function ProductsContent() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const categoryFromUrl = searchParams.get("category");
+  const nameFromUrl = searchParams.get("name");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,12 +49,16 @@ function ProductsContent() {
         setAllProducts(productsRes.data);
         setCategories(categoriesRes.data.map((c) => c.name).sort());
 
-        if (categoryFromUrl) {
-          setFilters((prev) => ({
-            ...prev,
-            selectedCategories: new Set([categoryFromUrl]),
-          }));
-        }
+        setFilters((prev) => {
+          const newFilters = { ...prev };
+          if (categoryFromUrl) {
+            newFilters.selectedCategories = new Set([categoryFromUrl]);
+          }
+          if (nameFromUrl) {
+            newFilters.search = nameFromUrl;
+          }
+          return newFilters;
+        });
       } catch (error) {
         console.error("Failed to fetch data", error);
       }
@@ -60,7 +66,7 @@ function ProductsContent() {
     };
 
     fetchData();
-  }, [categoryFromUrl]);
+  }, [categoryFromUrl, nameFromUrl]);
 
   useEffect(() => {
     let filtered = allProducts;
