@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { FaRegNewspaper } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const containerVariants = {
   hidden: {},
@@ -39,12 +40,20 @@ const truncateExcerpt = (text, maxLength) => {
 const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     axios
       .get("https://norivo-backend.vercel.app/blogs")
       .then((res) => {
-        setBlogs(res.data);
+        let data = res.data;
+        // Shuffle the array randomly (Fisher-Yates)
+        for (let i = data.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [data[i], data[j]] = [data[j], data[i]];
+        }
+        // Limit to max 6 blogs
+        setBlogs(data.slice(0, 6));
         setLoading(false);
       })
       .catch(() => {
@@ -69,47 +78,68 @@ const BlogSection = () => {
       {loading ? (
         <p className="text-center text-gray-500">Loading blogs...</p>
       ) : (
-        <motion.div
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {blogs.map(({ _id, title, excerpt, image, date }) => {
-            const truncatedTitle = truncateTitle(title, 50);
-            const truncatedExcerpt = truncateExcerpt(excerpt, 120);
+        <>
+          <motion.div
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {blogs.map(({ _id, title, excerpt, image, date }) => {
+              const truncatedTitle = truncateTitle(title, 50);
+              const truncatedExcerpt = truncateExcerpt(excerpt, 120);
 
-            return (
-              <motion.article
-                key={_id}
-                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow"
-                variants={cardVariants}
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 120, damping: 15 }}
-              >
-                <img
-                  src={image}
-                  alt={title}
-                  className="w-full h-48 object-cover"
-                  loading="lazy"
-                />
-                <div className="p-5">
-                  <time
-                    dateTime={date}
-                    className="block text-xs text-gray-400 mb-2"
-                  >
-                    {new Date(date).toLocaleDateString()}
-                  </time>
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">
-                    {truncatedTitle}
-                  </h3>
-                  <p className="text-gray-700 text-sm">{truncatedExcerpt}</p>
-                </div>
-              </motion.article>
-            );
-          })}
-        </motion.div>
+              return (
+                <motion.article
+                  key={_id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow flex flex-col"
+                  variants={cardVariants}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 120, damping: 15 }}
+                >
+                  <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-48 object-cover"
+                    loading="lazy"
+                  />
+                  <div className="p-5 flex flex-col flex-grow">
+                    <time
+                      dateTime={date}
+                      className="block text-xs text-gray-400 mb-2"
+                    >
+                      {new Date(date).toLocaleDateString()}
+                    </time>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                      {truncatedTitle}
+                    </h3>
+                    <p className="text-gray-700 text-sm flex-grow">
+                      {truncatedExcerpt}
+                    </p>
+                    <button
+                      onClick={() => router.push(`/blog/${_id}`)}
+                      className="mt-4 px-4 py-2 border-2 border-[#3BB77E] text-[#3BB77E] rounded-md font-semibold hover:bg-[#3BB77E] hover:text-white transition"
+                      type="button"
+                    >
+                      Read Now
+                    </button>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={() => router.push("/blog")}
+              className="px-8 py-3 border-2 border-[#3bb77e] text-[#3bb77e] rounded-md font-semibold hover:bg-[#3bb77e] hover:text-white transition"
+              type="button"
+            >
+              View All Blogs
+            </button>
+          </div>
+        </>
       )}
     </section>
   );
