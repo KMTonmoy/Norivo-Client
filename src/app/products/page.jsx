@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
 const PRODUCTS_PER_PAGE = 8;
@@ -19,7 +19,7 @@ const SkeletonCard = () => (
   </div>
 );
 
-const ProductsPage = () => {
+function ProductsContent() {
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -31,7 +31,10 @@ const ProductsPage = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +46,13 @@ const ProductsPage = () => {
         ]);
         setAllProducts(productsRes.data);
         setCategories(categoriesRes.data.map((c) => c.name).sort());
+
+        if (categoryFromUrl) {
+          setFilters((prev) => ({
+            ...prev,
+            selectedCategories: new Set([categoryFromUrl]),
+          }));
+        }
       } catch (error) {
         console.error("Failed to fetch data", error);
       }
@@ -50,7 +60,7 @@ const ProductsPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [categoryFromUrl]);
 
   useEffect(() => {
     let filtered = allProducts;
@@ -138,7 +148,6 @@ const ProductsPage = () => {
               className="w-1/2 rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
             />
           </div>
-          <p className="text-sm text-gray-500 mt-2">Leave empty or 0 to disable price filtering.</p>
         </div>
       </aside>
 
@@ -241,6 +250,12 @@ const ProductsPage = () => {
       </main>
     </div>
   );
-};
+}
 
-export default ProductsPage;
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-center text-gray-500 text-lg">Loading products...</div>}>
+      <ProductsContent />
+    </Suspense>
+  );
+}

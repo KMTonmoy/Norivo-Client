@@ -58,7 +58,8 @@ const CategoriesSection = () => {
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 px-4">
           {categories.map((category) => (
-            <div
+          <a href={`/products?category=${category.name}`}>
+              <div
               key={category.id}
               className="text-center shadow-md rounded-md p-3 bg-white transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
@@ -71,6 +72,7 @@ const CategoriesSection = () => {
                 {category.name}
               </h3>
             </div>
+          </a>
           ))}
         </div>
       </div>
