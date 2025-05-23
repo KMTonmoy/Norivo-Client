@@ -17,10 +17,11 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import { AuthContext } from "../Provider/AuthProvider";
+import { MdDashboard } from "react-icons/md";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const { user, logOut } = useContext(AuthContext);
   const email = user?.email || "";
   const role = data?.role;
@@ -30,36 +31,93 @@ const Sidebar = () => {
       fetch(`https://norivo-backend.vercel.app/users/${email}`)
         .then((res) => res.json())
         .then(setData)
-        .catch(console.error);
+        .catch(() => setData(null));
     }
   }, [email]);
 
   const toggleSidebar = () => setIsOpen((prev) => !prev);
 
   const commonLinks = [
-    { name: "Home", icon: <FaHome />, path: "/dashboard" },
+    { name: "Home", icon: <FaHome />, path: "/" },
+    { name: "Dashboard", icon: <MdDashboard />, path: "/dashboard" },
     { name: "Profile", icon: <FaUserCircle />, path: "/dashboard/profile" },
     { name: "Settings", icon: <FaCogs />, path: "/dashboard/settings" },
     { name: "My Orders", icon: <FaBoxOpen />, path: "/dashboard/myorders" },
   ];
 
   const adminLinks = [
-    { name: "Customize Banner", icon: <FaImage />, path: "/dashboard/CustomizeBanner" },
-    { name: "Add Product", icon: <FaPlusCircle />, path: "/dashboard/addproduct" },
-    { name: "Manage Products", icon: <FaBoxOpen />, path: "/dashboard/products" },
-    { name: "Add Coupon", icon: <FaMoneyBillWave />, path: "/dashboard/AddCoupon" },
-    { name: "Manage Coupons", icon: <FaTags />, path: "/dashboard/ManageCoupon" },
-    { name: "Manage Categories", icon: <FaThLarge />, path: "/dashboard/categories" },
-    { name: "Manage Blogs", icon: <FaNewspaper />, path: "/dashboard/manageblogs" },
+    { name: "Home", icon: <FaHome />, path: "/" },
+    { name: "Dashboard", icon: <MdDashboard />, path: "/dashboard" },
+    {
+      name: "Customize Banner",
+      icon: <FaImage />,
+      path: "/dashboard/CustomizeBanner",
+    },
+    {
+      name: "Add Product",
+      icon: <FaPlusCircle />,
+      path: "/dashboard/addproduct",
+    },
+    {
+      name: "Manage Products",
+      icon: <FaBoxOpen />,
+      path: "/dashboard/products",
+    },
+    {
+      name: "Add Coupon",
+      icon: <FaMoneyBillWave />,
+      path: "/dashboard/AddCoupon",
+    },
+    {
+      name: "Manage Coupons",
+      icon: <FaTags />,
+      path: "/dashboard/ManageCoupon",
+    },
+    {
+      name: "Manage Categories",
+      icon: <FaThLarge />,
+      path: "/dashboard/categories",
+    },
+    {
+      name: "Manage Blogs",
+      icon: <FaNewspaper />,
+      path: "/dashboard/manageblogs",
+    },
   ];
 
   const links = role === "admin" ? adminLinks : commonLinks;
 
+  const Skeleton = () => (
+    <div className="animate-pulse flex flex-col h-full bg-gray-900 text-white w-64 p-5">
+      <div className="flex items-center space-x-4 mb-6">
+        <div className="rounded-full bg-gray-700 h-12 w-12" />
+        <div className="flex flex-col space-y-2 w-full">
+          <div className="h-4 bg-gray-700 rounded w-3/4" />
+          <div className="h-3 bg-gray-700 rounded w-1/2" />
+        </div>
+      </div>
+      <div className="flex-1 space-y-4">
+        {[...Array(7)].map((_, i) => (
+          <div key={i} className="h-8 bg-gray-700 rounded w-full mx-3" />
+        ))}
+      </div>
+      <div className="mt-6">
+        <div className="h-10 bg-gray-700 rounded w-full mx-3" />
+      </div>
+    </div>
+  );
+
+  if (!data) {
+    return <Skeleton />;
+  }
+
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300 ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden transition-opacity duration-300 ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
         onClick={toggleSidebar}
         aria-hidden="true"
@@ -129,7 +187,6 @@ const Sidebar = () => {
             </button>
           </div>
         </aside>
- 
       </div>
     </>
   );

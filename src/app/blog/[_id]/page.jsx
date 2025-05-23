@@ -14,7 +14,7 @@ const BlogDetails = ({ params }) => {
   useEffect(() => {
     if (!_id) return;
 
-    fetch(`http://localhost:8000/blogs/${_id}`)
+    fetch(`https://norivo-backend.vercel.app/blogs/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setBlog(data);

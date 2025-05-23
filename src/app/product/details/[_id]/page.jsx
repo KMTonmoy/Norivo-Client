@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
+import { AuthContext } from "@/Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { _id } = useParams();
@@ -12,6 +14,8 @@ const ProductDetails = () => {
   const [related, setRelated] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState("");
+  const [loadingCart, setLoadingCart] = useState(false);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (_id) {
@@ -28,7 +32,9 @@ const ProductDetails = () => {
 
   const fetchRelated = async (category, currentId) => {
     try {
-      const { data } = await axios.get("https://norivo-backend.vercel.app/products");
+      const { data } = await axios.get(
+        "https://norivo-backend.vercel.app/products"
+      );
       const filtered = data
         .filter((item) => item.category === category && item._id !== currentId)
         .slice(0, 8);
@@ -41,13 +47,40 @@ const ProductDetails = () => {
   const handleQuantityChange = (type) => {
     setQuantity((prev) => {
       if (type === "decrease" && prev > 1) return prev - 1;
-      if (type === "increase" && prev < product.quantity) return prev + 1;
+      if (type === "increase" && product && prev < product.quantity) return prev + 1;
       return prev;
     });
   };
 
-  const handleAddToCart = () => {
-    console.log("Add to cart:", { _id: product._id, quantity });
+  const handleAddToCart = async () => {
+    if (!product) return;
+    if (!user?.email) {
+      toast("Please log in to add items to your cart.");
+      return;
+    }
+
+    setLoadingCart(true);
+
+    const payload = {
+      userEmail: user.email,
+      product,
+      quantity,
+    };
+
+    try {
+      const response = await axios.post("https://norivo-backend.vercel.app/cart", payload);
+
+      if (response.status === 200 || response.status === 201) {
+        toast("Product added to cart successfully!");
+      } else {
+        toast("Failed to add product to cart.");
+      }
+    } catch (error) {
+      console.error("Add to cart error:", error);
+      toast("An error occurred while adding product to cart.");
+    } finally {
+      setLoadingCart(false);
+    }
   };
 
   if (!product) return <div className="p-6 text-center">Loading...</div>;
@@ -120,16 +153,21 @@ const ProductDetails = () => {
 
           <button
             onClick={handleAddToCart}
-            className="mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            disabled={loadingCart}
+            className={`mt-4 px-6 py-2 rounded text-white ${
+              loadingCart ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Add to Cart
+            {loadingCart ? "Adding..." : "Add to Cart"}
           </button>
         </div>
       </div>
 
       {related.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-4">Relevant Products - Your Matches</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Relevant Products - Your Matches
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {related.map((item) => (
               <div

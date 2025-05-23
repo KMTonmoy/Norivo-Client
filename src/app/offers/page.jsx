@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BadgePercent } from "lucide-react";
+import { FiCopy } from "react-icons/fi";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 
-// Skeleton Card Component
 const CouponSkeleton = () => (
   <div className="bg-white shadow-md rounded-lg p-6 animate-pulse border-l-8 border-gray-200">
     <div className="h-6 bg-gray-200 rounded w-1/3 mb-4" />
@@ -40,8 +41,16 @@ const Coupons = () => {
     return { color: "red", tag: "Hot Deal" };
   };
 
+  const handleCopy = (code) => {
+    navigator.clipboard.writeText(code);
+    toast.success(`Coupon "${code}" copied to clipboard!`, {
+      position: "top-center",
+    });
+  };
+
   return (
     <div className="p-6 min-h-screen bg-gray-100">
+      <Toaster position="top-center" />
       <h1 className="text-4xl font-bold mb-8 text-gray-800">Available Coupons</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,11 +67,19 @@ const Coupons = () => {
                   className="bg-white shadow-md rounded-lg p-6 border-l-8"
                   style={{ borderColor: color }}
                 >
-                  <div className="flex items-center mb-4 gap-2">
-                    <BadgePercent className="text-green-600" />
-                    <h2 className="text-2xl font-semibold text-gray-800">
-                      Code: {coupon.code}
-                    </h2>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <BadgePercent className="text-green-600" />
+                      <h2 className="text-2xl font-semibold text-gray-800">
+                        Code: {coupon.code}
+                      </h2>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(coupon.code)}
+                      className="text-sm text-blue-600 flex items-center gap-1 hover:underline"
+                    >
+                      <FiCopy className="text-lg" /> Copy
+                    </button>
                   </div>
                   <p className="text-lg text-gray-700 font-semibold">{coupon.title}</p>
                   <p className="text-sm text-gray-600 mt-1 mb-4">{coupon.description}</p>

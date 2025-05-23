@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <div className="flex ">
           <Sidebar />
-          <main className="flex justify-center w-full">{children}</main>
+          <main className="flex mt-25 justify-center w-full">{children}</main>
         </div>
       </AuthProvider>
     </div>

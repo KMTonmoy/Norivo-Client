@@ -5,6 +5,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { useRouter } from "next/navigation";
+import { FiCopy } from "react-icons/fi";
+import toast, { Toaster } from "react-hot-toast";
 
 dayjs.extend(duration);
 
@@ -16,12 +18,10 @@ const Countdown = ({ endTime }) => {
       const now = dayjs();
       const end = dayjs(endTime);
       const diff = end.diff(now);
-
       if (diff <= 0) {
         setRemaining("Deal Ended");
         return;
       }
-
       const time = dayjs.duration(diff);
       setRemaining(
         `${String(time.hours()).padStart(2, "0")}:${String(
@@ -46,6 +46,11 @@ const OffersSection = () => {
   const SHOW_LIMIT = 8;
   const router = useRouter();
 
+  const handleCopy = (code) => {
+    navigator.clipboard.writeText(code);
+    toast.success("Coupon code copied!");
+  };
+
   useEffect(() => {
     axios
       .get("https://norivo-backend.vercel.app/products")
@@ -60,28 +65,20 @@ const OffersSection = () => {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleItems((prev) => ({
-              ...prev,
-              [entry.target.dataset.id]: true,
-            }));
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1,
-      }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisibleItems((prev) => ({
+            ...prev,
+            [entry.target.dataset.id]: true,
+          }));
+          observer.unobserve(entry.target);
+        }
+      });
+    });
 
     const elements = document.querySelectorAll(".offer-card");
     elements.forEach((el) => observer.observe(el));
-
     return () => {
       elements.forEach((el) => observer.unobserve(el));
     };
@@ -91,6 +88,7 @@ const OffersSection = () => {
 
   return (
     <section className="py-16">
+      <Toaster position="top-center" reverseOrder={false} />
       <h2 className="text-3xl font-bold text-center text-orange-600 mb-10">
         Flash Deals 🔥
       </h2>
@@ -122,10 +120,8 @@ const OffersSection = () => {
                   key={product._id}
                   data-id={product._id}
                   onClick={() => router.push(`/product/details/${product._id}`)}
-                  className={`offer-card cursor-pointer relative bg-white rounded-2xl shadow hover:shadow-lg transition-all p-4 transform transition duration-700 ease-out ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
+                  className={`offer-card cursor-pointer relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 transform duration-700 ease-out border border-gray-100 ${
+                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                 >
                   <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -135,7 +131,7 @@ const OffersSection = () => {
                   <img
                     src={product.images[0]}
                     alt={product.name}
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-full h-48 object-cover rounded-xl shadow-sm"
                   />
 
                   <h3 className="text-lg font-semibold mt-3">{product.name}</h3>
@@ -157,9 +153,22 @@ const OffersSection = () => {
                     Quantity: {product.quantity}
                   </p>
 
-                  {product.offerEndTime && (
-                    <Countdown endTime={product.offerEndTime} />
-                  )}
+                  <div className="mt-4 flex flex-col gap-2">
+                    <div className="flex items-center gap-2 text-sm bg-gray-100 px-3 py-1 rounded-md border border-dashed border-gray-300 w-fit">
+                      <span className="font-medium text-gray-700">Coupon:</span>
+                      <span className="font-mono text-gray-800">{product.couponCode || "SAVE20"}</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(product.couponCode || "SAVE20");
+                        }}
+                        className="text-gray-600 hover:text-green-600 transition"
+                      >
+                        <FiCopy size={16} />
+                      </button>
+                    </div>
+                    {product.offerEndTime && <Countdown endTime={product.offerEndTime} />}
+                  </div>
                 </div>
               );
             })}
